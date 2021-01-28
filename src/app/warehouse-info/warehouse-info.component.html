@@ -1,0 +1,28 @@
+<ng-container
+*ngIf="supplies.length === 0; then emptyWarehouseInfo else currentStateOfWarehouseInfo">
+</ng-container>
+
+<ng-template #emptyWarehouseInfo>
+<div class="row">
+  <h3>Magazyn jest obecnie pusty</h3>
+</div>
+</ng-template>
+
+<ng-template #currentStateOfWarehouseInfo>
+<div class="row">
+  <h3>Aktualny stan magazynu</h3>
+  <div class="col s12">
+    <div 
+      class="card hoverable supply" 
+      *ngFor="let supply of supplies; let odd = odd"
+      [ngClass]="odd ? 'style_1' : 'style_2'">
+      <div class="card-content">
+        <span class="card-title">
+          Liczba cegieł w partii: {{ supply.amount | number }} 
+        </span>
+        Cena za sztukę: {{ supply.price | currency:'PLN ' }}
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>
